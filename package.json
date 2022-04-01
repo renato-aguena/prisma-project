@@ -1,0 +1,24 @@
+{
+  "name": "prisma-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -L --watch ./src --inspect=0.0.0.0:9222 --nolazy ./src/index.js",
+    "up": "docker-compose up -d",
+    "down": "docker-compose down",
+    "db-connect": "docker exec -it prisma-project-database psql -U postgres -W -d prisma_project"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.11.1",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prisma": "^3.11.1"
+  }
+}

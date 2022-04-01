@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  api: 
+    container_name: prisma-project-api
+    image: node:14-alpine3.14
+    restart: always
+    command: sh -c "npm install && npx prisma generate && npm run start"
+    working_dir: /usr/src/prisma-project
+    volumes:
+      - ./:/usr/src/prisma-project
+    ports:
+      - "8080:8080"
+    links:
+      - database
+
+  database:
+    container_name: prisma-project-database
+    image: postgres:14.2
+    restart: always
+    environment:
+      POSTGRES_DB: prisma_project
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
